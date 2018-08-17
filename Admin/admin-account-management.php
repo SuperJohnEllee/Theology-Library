@@ -19,7 +19,7 @@
 	$type_row = mysqli_fetch_assoc($type_res); */
 
 
-	if (isset($_POST['btn_add'])) {
+	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 			//define variables
  		 	$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
@@ -146,7 +146,7 @@
 				</thead>
 				<div class="form-group">
 					<tr>
-						<form class="form-horizontal" action="admin-account-management.php" method="post">
+						<form class="form-horizontal" method="post">
 							<td><input class="form-control" type="hidden" name="adminID"></td>
 							<td><input class="form-control" type="text" name="lastname" placeholder="Last Name" required></td>
 							<td><input class="form-control" type="text" name="firstname" placeholder="First Name" required></td>

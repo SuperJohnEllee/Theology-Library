@@ -24,28 +24,27 @@
                             <h3 class="text-center text-white mb-0">Forgot Password</h3>
                         </div>
                         <div class="card-body cyan lighten-5 text-dark">
-                            <form class="form" action="forgot_pass.php" role="form" autocomplete="off" method="post">
+                            <form class="form" role="form" autocomplete="off" method="post">
                                 <div class="md-form">
                                     <i class="fa fa-envelope prefix text-dark"></i>
-                                    <input class="form-control" id="email" type="email" name="email" placeholder="Email">
+                                    <input class="form-control" id="email" type="email" name="email" required>
+                                    <label>Email</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-user prefix text-dark"></i>
-                                    <input id="text" type="text" class="form-control" name="user" placeholder="Username" required>
+                                    <input id="text" type="text" class="form-control" name="user" required>
+                                    <label>Username</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-lock prefix text-dark"></i>
-                                    <input id="text" type="password" class="form-control" name="user_pass" placeholder="Password" required>
+                                    <input id="text" type="password" class="form-control" name="user_pass" required>
+                                    <label>Password</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-lock prefix text-dark"></i>
-                                    <input id="text" type="password" class="form-control" name="user_conf_pass" placeholder="Confirm Password" required>
+                                    <input id="text" type="password" class="form-control" name="user_conf_pass" required>
+                                    <label>Confirm Password</label>
                                 </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <p class="font-weight-bold text-center">We will send your password<br>right away through your Username or Birthday</p>
-                                </div>
-                            </div>
                             <div class="form-group">
                               <div class="col-md-8">
                                 <button  type="submit" class="btn btn-success col-md-6 btn-lg float-right" name="btn_send" id="btn_send"><i class="fa fa-paper-plane"></i>&nbsp;SEND</button>
@@ -74,7 +73,7 @@
     session_start();
     include ('connection.php');
 
-    if (isset($_POST['btn_send'])) {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
         $user = mysqli_real_escape_string($conn, $_POST['user']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);

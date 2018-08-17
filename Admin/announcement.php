@@ -54,7 +54,7 @@
 	<br>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">	
-			<form id="AddAnnoucementForm" action="announcement.php" method="post" enctype="multipart/form-data">
+			<form id="AddAnnoucementForm" method="post" enctype="multipart/form-data">
 				<p>Note: Please input an image when you post an announcement</p>
 				<div class="md-form">
 					<i class="fa fa-image prefix"></i>
@@ -132,7 +132,7 @@
 </script>
 <?php
 
-	if (isset($_POST['post'])) {
+	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$title = mysqli_real_escape_string($conn, $_POST['title']);
 		$content = mysqli_real_escape_string($conn, $_POST['content']);
 		$announcement_image = mysqli_real_escape_string($conn, '../announcement_image/'.$_FILES['image']['name']);

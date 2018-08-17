@@ -8,17 +8,17 @@
 		session_unset();
 		session_destroy();
 		header("location: index.php");
-	} else {
-		
-	}
-
+	} 
 	include ('../connection.php');
 
-	$id = htmlspecialchars($_POST['id']);
 	$sql = "SELECT AnnouncementID FROM announcement";
 	$res_sql = mysqli_query($conn, $sql);
 	$announcement_count = mysqli_num_rows($res_sql);
-	$announcement_row = mysqli_fetch_assoc($res_sql);
+
+	$announcement_sql = "SELECT * FROM announcement";
+	$announcement_res = mysqli_query($conn, $announcement_sql);
+	$announcement_row = mysqli_fetch_array($announcement_res);
+	
 
 ?>
 <html>
@@ -44,31 +44,7 @@
 				<a class="nav-item nav-link active text-white" href="adminHome.php"><span class="fa fa-home"></span>&nbsp;Home<span class="sr-only">(current)</span></a>
 			</div>
 		</div>
-	</nav><br><br><br>
-	<div class="modal fade" id="showAnnouncement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content cyan lighten-5">
-				<div class="modal-header text-center cyan lighten-3">
-					<h4 class="modal-title w-100 font-weight-bold"><span class="fa fa-edit"></span> Edit Announcement Date</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>	
-					</button>
-				</div>
-				<p class="text-center">Note: Update announcement date</p>
-				<div class="modal-body mx-3">
-					<form action="admin-view-previous-announcement.php" method="post">
-						<div class="md-form mb-5">
-							<input type="text" name="txtGetID" id="txtGetID">
-							<!--<input class="form-control datepicker" type="date" name="announcement_date" id="announcement_date">-->
-						</div>
-						<div class="md-form mb-5">
-							<button type="submit" class="btn btn-default col-md-12" name="btn_reserved" ><span class="fa fa-chevron-circle-right"></span> Submit</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	</nav><br>
 	<div class="container">
 		<div class="table-scrol">
 		<h1 style="text-align: center;">Your Announcements(<?php echo $announcement_count; ?>)</h1>
@@ -101,7 +77,7 @@
 						echo '<td>'.htmlspecialchars($row['Content']).'</td>';
 						echo '<td>'.htmlspecialchars($row['PostDate']).'</td>';
 						echo '<td>'.htmlspecialchars($row['PostBy']).'</td>';
-						echo '<td><a class="btn btn-default" href="id='.htmlspecialchars($announcement_row['AnnouncementID']).'" data-toggle="modal" data-target="#showAnnouncement"><span class="fa fa-eye"></span> Show</a></td>';
+						echo '<td><a class="btn btn-default" href="show_announcement.php?show='.htmlspecialchars($announcement_row['AnnouncementID']).'"><span class="fa fa-eye"></span> Show</a></td>';
 						echo '<td><a class="btn btn-primary" href="admin-edit-announcement.php?id='.$row['AnnouncementID'].'"><span class="fa fa-edit"></span> Edit</a></td>';
 						echo '<td><a class="btn btn-danger" href="admin-delete.php?del='.$row['AnnouncementID'].'"><span class="fa fa-trash"></span> Delete</a></td></tr>';
 					}
@@ -113,28 +89,6 @@
 		</div>
 	</div>
 	</div>
-<?php
-
-		if (isset($_POST['btn_show'])) {
-
-			$id = htmlspecialchars($_POST['id']);
-			//$date = mysqli_real_escape_string($conn, $_POST['announcement_date']);
-			$show_sql = "UPDATE announcement SET PostDate = CURRENT_TIMESTAMP() WHERE AnnouncementID = '$id'";
-			$show_res = mysqli_query($conn, $show_sql);
-			
-				if ($show_res) {
-					echo "<script>
-						alert('Successfully updated an announcement date');
-					</script>
-					<meta http-equiv='refresh' content='0; url=announcement.php'>";		
-
-				} else {
-					echo "<script>
-						alert('Failure in updating an announcement date');
-					</script>";
-				}
-			}
-	?>	
 <!--JavaScript Libraries-->
 
 <script>

@@ -69,10 +69,10 @@
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#editModal"><span class="fa fa-edit">&nbsp;Edit Profile</span></a>
+					<a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#editModal"><span class="fa fa-edit"></span> Edit Profile</a>
 				</div>
 				<div class="form-group">
-					<a href="change-password.php?<?php echo htmlspecialchars($session_user); ?>" class="btn btn-lg btn-dark"><span class="fa fa-lock"></span>&nbsp;Change Password</a> 
+					<a href="change-password.php?<?php echo htmlspecialchars($session_user); ?>" class="btn btn-lg btn-dark"><span class="fa fa-lock"></span> Change Password</a> 
 				</div>
 			</div>
 		</div>

@@ -18,8 +18,6 @@
     session_start();
     include ('connection.php');
 
-    $time = time();
-
     if (isset($_POST['login'])) {
 
         //variables. Define username and password
@@ -73,7 +71,7 @@
                  //User logs
                  $filename = "system/user_login.txt";
                  $fp = fopen($filename, 'a+');
-                 fwrite($fp, " " . $username . " | " . $password . " | " . date("l jS \of F Y h:i:s A", $time). "\n");
+                 fwrite($fp, " " . $username . " | " . $password . " | " . date("l jS \of F Y h:i:s A"). "\n");
                  fclose($fp);
                  die();
 

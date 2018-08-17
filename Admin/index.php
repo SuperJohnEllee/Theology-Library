@@ -26,7 +26,7 @@
 								<h3 class="text-center"><span class="fa fa-sign-in"></span> Log In Credentials</h3>
 							</div>
 							<div class="card-body">
-								<form class="form" action="index.php" method="post" role="form" autocomplete="off" id="formLogin">
+								<form class="form" method="POST" role="form" autocomplete="off" id="formLogin">
 									<div class="md-form">
                                         <i class="fa fa-user prefix text-white"></i>
 										<input class="form-control form-control-lg rounded-0" type="text" name="admin_user" id="admin_user" required>
@@ -56,7 +56,7 @@
     
     include ('../connection.php');
 
-    if (isset($_POST['login'])) {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //define var
         $username = $_POST['admin_user'];
