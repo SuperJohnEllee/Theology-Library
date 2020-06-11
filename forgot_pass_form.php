@@ -24,8 +24,8 @@
             $mail->Debugoutput = "html";
             $mail->Host = "smtp.gmail.com"; //Host Name
             $mail->SMTPAuth = true; //if SMTP Host requires authenticationto send email
-            $mail->Username = "bachrobado@gmail.com";
-            $mail->Password = "sniper09";
+            $mail->Username = "cputheology@gmail.com";
+            $mail->Password = "theology";
             $mail->SMTPSecure = "false";
             $mail->Port = 587;
             $mail->setFrom('bachrobado@gmail.com', 'College of Theology');
